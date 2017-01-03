@@ -11,7 +11,7 @@ var onOff = 0;
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   sound   = loadSound('assets/sound.mp3');
-  sound.setVolume(0.1);
+  sound.setVolume(0.5);
   img[0]  = loadImage("assets/particle1.png");
   img[1]  = loadImage("assets/particle2.png");
   img[2]  = loadImage("assets/particle3.png");
