@@ -1,5 +1,6 @@
 var systems;
 var img = [null, null, null];
+var imgup, imgdown;
 var colors = ["#0000DD", "#00DD00", "#DD0000", "#00DDDD", "#DD00DD", "#DDDD00"];
 var changeColor = 0;
 var currentColor = 0;
@@ -7,9 +8,11 @@ var onOff = 0;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  img[0] = loadImage("assets/particle1.png");  // Load the image
-  img[1] = loadImage("assets/particle2.png");  // Load the image
-  img[2] = loadImage("assets/particle3.png");  // Load the image
+  img[0] = loadImage("assets/particle1.png");
+  img[1] = loadImage("assets/particle2.png");
+  img[2] = loadImage("assets/particle3.png");
+  imgup  = loadImage("assets/pantsup.png");
+  imgdown = loadImage("assets/pantsdown.png");
   systems = [];
   this.p = new ParticleSystem(createVector(0, height));
   systems.push(p);
@@ -35,6 +38,15 @@ function draw() {
     systems[i].run();
     if (onOff) {systems[i].addParticle();}
   }
+  if (onOff) {
+    var randposx = random(-10, 10);
+    var randposy = random(-10, 10);
+    var randsize = random(-10, 10);
+    image(imgdown, (width/2)-300+randposx, (height/2)-480+randposy, 540+randsize, 960+randsize);
+  } else {
+    text("drop your pants!", 0, 10);
+    image(imgup, (width/2)-270, (height/2)-480, 540, 960);
+  }
 }
 
 function mousePressed() {
@@ -50,8 +62,8 @@ function turnOff() {
 
 // A simple Particle class
 var Particle = function(position) {
-  this.acceleration = createVector(0, 0.08);
-  this.velocity = createVector(random(-5, 5), random(-15, -8));
+  this.acceleration = createVector(0, 0.5);
+  this.velocity = createVector(random(-10, 10), random(-30, -15));
   this.position = position.copy();
   this.img = int(random(0, 3));
   this.size = random(50, 150);
@@ -83,7 +95,7 @@ Particle.prototype.display = function () {
 
 // Is the particle still useful?
 Particle.prototype.isDead = function () {
-  if (/*this.lifespan < 0 || */this.position.x < -50 || this.position.y < -50 || this.position.x > width + 50 || this.position.y > height + 50) {
+  if (/*this.lifespan < 0 || */this.position.x < -50 || this.position.x > width + 50 || this.position.y > height + 50) {
     return true;
   } else {
     return false;
