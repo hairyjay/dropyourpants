@@ -5,11 +5,12 @@ var imgup, imgdown;
 var colors = ["#0000DD", "#00DD00", "#DD0000", "#00DDDD", "#DD00DD", "#DDDD00"];
 var changeColor = 0;
 var currentColor = 0;
+var running = 0;
 var onOff = 0;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  sound   = loadSound('assets/sound1.mp3');
+  sound   = loadSound('assets/sound.mp3');
   sound.setVolume(0.1);
   img[0]  = loadImage("assets/particle1.png");
   img[1]  = loadImage("assets/particle2.png");
@@ -21,7 +22,7 @@ function setup() {
   systems.push(p);
   this.p = new ParticleSystem(createVector(width, height));
   systems.push(p);
-  setTimeout(mousePressed, 1000);
+  setTimeout(mousePressed, 500);
 }
 
 function draw() {
@@ -49,20 +50,27 @@ function draw() {
     image(imgdown, (width/2)-300+randposx, (height/2)-480+randposy, 540+randsize, 960+randsize);
   } else {
     text("drop your pants!", 0, 10);
+    text("shoutout to mike vu for audio and\ndave for dropping his pants", 0, 50);
     image(imgup, (width/2)-270, (height/2)-480, 540, 960);
   }
 }
 
 function mousePressed() {
-  if (onOff == 0){
-    onOff = 1;
-    setTimeout(turnOff, 5500);
+  if (running == 0){
+    running = 1;
+    setTimeout(turnOn, 700);
+    setTimeout(turnOff, 10200);
     sound.play();
   }
 }
 
+function turnOn() {
+  onOff = 1;
+}
+
 function turnOff() {
   onOff = 0;
+  running = 0;
 }
 
 // A simple Particle class
