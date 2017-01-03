@@ -22,7 +22,7 @@ function setup() {
   systems.push(p);
   this.p = new ParticleSystem(createVector(width, height));
   systems.push(p);
-  setTimeout(mousePressed, 500);
+  setTimeout(mousePressed, 1000);
 }
 
 function draw() {
