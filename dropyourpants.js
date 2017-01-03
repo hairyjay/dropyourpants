@@ -1,4 +1,5 @@
 var systems;
+var sound;
 var img = [null, null, null];
 var imgup, imgdown;
 var colors = ["#0000DD", "#00DD00", "#DD0000", "#00DDDD", "#DD00DD", "#DDDD00"];
@@ -8,16 +9,19 @@ var onOff = 0;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  img[0] = loadImage("assets/particle1.png");
-  img[1] = loadImage("assets/particle2.png");
-  img[2] = loadImage("assets/particle3.png");
-  imgup  = loadImage("assets/pantsup.png");
+  sound   = loadSound('assets/sound1.mp3');
+  sound.setVolume(0.1);
+  img[0]  = loadImage("assets/particle1.png");
+  img[1]  = loadImage("assets/particle2.png");
+  img[2]  = loadImage("assets/particle3.png");
+  imgup   = loadImage("assets/pantsup.png");
   imgdown = loadImage("assets/pantsdown.png");
   systems = [];
   this.p = new ParticleSystem(createVector(0, height));
   systems.push(p);
   this.p = new ParticleSystem(createVector(width, height));
   systems.push(p);
+  setTimeout(mousePressed, 500);
 }
 
 function draw() {
@@ -52,7 +56,8 @@ function draw() {
 function mousePressed() {
   if (onOff == 0){
     onOff = 1;
-    setTimeout(turnOff, 5000);
+    setTimeout(turnOff, 5500);
+    sound.play();
   }
 }
 
@@ -66,7 +71,7 @@ var Particle = function(position) {
   this.velocity = createVector(random(-10, 10), random(-30, -15));
   this.position = position.copy();
   this.img = int(random(0, 3));
-  this.size = random(50, 150);
+  this.size = random(50, 200);
   this.lifespan = 512.0;
   this.theta = 0.0;
 };
