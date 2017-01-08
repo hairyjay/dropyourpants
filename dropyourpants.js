@@ -1,6 +1,6 @@
 var systems;
 var sound;
-var img = [null, null, null];
+var img = [null, null, null. null];
 var imgup, imgdown;
 var colors = ["#0000DD", "#00DD00", "#DD0000", "#00DDDD", "#DD00DD", "#DDDD00"];
 var changeColor = 0;
@@ -15,6 +15,7 @@ function setup() {
   img[0]  = loadImage("assets/particle1.png");
   img[1]  = loadImage("assets/particle2.png");
   img[2]  = loadImage("assets/particle3.png");
+  img[3]  = loadImage("assets/particle4.png");
   imgup   = loadImage("assets/pantsup.png");
   imgdown = loadImage("assets/pantsdown.png");
   systems = [];
@@ -78,7 +79,7 @@ var Particle = function(position) {
   this.acceleration = createVector(0, 0.5);
   this.velocity = createVector(random(-10, 10), random(-30, -15));
   this.position = position.copy();
-  this.img = int(random(0, 3));
+  this.img = int(random(0, 4));
   this.size = random(50, 200);
   this.lifespan = 512.0;
   this.theta = 0.0;
