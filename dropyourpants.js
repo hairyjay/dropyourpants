@@ -1,6 +1,6 @@
 var systems;
 var sound;
-var img = [null, null, null. null];
+var img = [null, null, null, null];
 var imgup, imgdown;
 var colors = ["#0000DD", "#00DD00", "#DD0000", "#00DDDD", "#DD00DD", "#DDDD00"];
 var changeColor = 0;
